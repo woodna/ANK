@@ -65,6 +65,4 @@ public class Herd {
     public void setSellPrice(BigDecimal sellPrice) {
         this.sellPrice = sellPrice;
     }
-    
-    
 }
