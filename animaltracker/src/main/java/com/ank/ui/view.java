@@ -50,10 +50,10 @@ public class view {
     public void displayHerdList(List<Herd> herds) {
         io.print("=== Display All Herds ===");
         for (Herd currentHerd : herds) {
-            io.print(currentHerd.getName() + ":" +
-                    currentHerd.getPopulation() + ":" +
-                    currentHerd.getSellPrice() + ":" +
-                    currentHerd.getHealth());
+            io.print("Name: " + currentHerd.getName() + ":" +
+                    "Population: " + currentHerd.getPopulation() + ":" +
+                    "Health: " + currentHerd.getHealth() + ":" +
+                    "Sell Price: " + currentHerd.getSellPrice());
         }
         io.readString("Please press enter to continue.");
     }
@@ -63,12 +63,12 @@ public class view {
     }
 
     public void displayHerd(Herd Herd) {
-        getHerdName();
         io.print("=== Display Herd ===");
         if (Herd !=null) {
-            io.print(Herd.getName());
-            io.print(Integer.toString(Herd.getPopulation()));
-            io.print(Integer.toString(Herd.getHealth()));
+            io.print("Herd: " + Herd.getName());
+            io.print("Population: " + Integer.toString(Herd.getPopulation()));
+            io.print("Health: " + Integer.toString(Herd.getHealth()));
+            io.print("Sell Price: " + (Herd.getSellPrice()));
             io.print("");
         } else {
             io.print("No such Herd.");
