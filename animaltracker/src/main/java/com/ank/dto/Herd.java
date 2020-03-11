@@ -18,7 +18,7 @@ public class Herd {
     
     private String name;
     private int population;
-    private ArrayList<Integer> health =  new ArrayList<Integer>();
+    private int health;
     private LocalDate recentUpdate;
     private BigDecimal sellPrice;
 
@@ -42,11 +42,11 @@ public class Herd {
         this.population = population;
     }
 
-    public ArrayList<Integer> getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(ArrayList<Integer> health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
