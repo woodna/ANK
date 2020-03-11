@@ -21,9 +21,6 @@ public class Controller {
         this.dao = dao;
         this.view = view;
     }
-        
-
-    
 
     public void run() {
         boolean keepGoing = true;
@@ -71,27 +68,35 @@ public class Controller {
         //view.
     }
 
-    private void viewHerd() throws NoSuchHerdException {
+    private void viewHerd() {
         String name = view.getHerdName();
-        Herd herd = dao.viewHerd(name);
+        try {
+            Herd herd = dao.viewHerd(name);
+        } catch (NoSuchHerdException e) {
+            view.print(e.getMessage());
+        }
         //view.displayHerd(herd);
     }
 
-    private void createHerd() throws HerdPersistenceException {
+    private void createHerd() {
         Herd newHerd = view.getNewHerdInfo();
         dao.addHerd(newHerd.getName(), newHerd);
     }
 
-    private void updateHerd() throws HerdPersistenceException {
+    private void updateHerd() {
         String name = view.getHerdName();
         Herd currentHerd = dao.viewHerd(name);
         Herd editHerd = view.getEditHerdInfo(currentHerd);
         dao.editHerd(name, editHerd);
     }
 
-    private void removeHerd() throws NoSuchHerdException {
+    private void removeHerd() {
         String name = view.getHerdName();
-        dao.viewHerd(name);
+        try {
+            dao.viewHerd(name);;
+        } catch (NoSuchHerdException e) {
+            view.print(e.getMessage());
+        }
     }
 
     private void exitMessage() {
@@ -102,4 +107,3 @@ public class Controller {
         //view.displayUnknownCommandBanner();
     }
 }
-
