@@ -1,4 +1,4 @@
-package com.ank.controller;
+package com.ank.animalTrackerController;
 
 import java.util.List;
 
@@ -14,12 +14,12 @@ import java.util.logging.Logger;
 Nate Wood
 Controller
  */
-public class Controller {
+public class AnimalTrackerController {
 
     AnimalTrackerDao dao;
     view view;
 
-    public Controller(AnimalTrackerDao dao, view view) {
+    public AnimalTrackerController(AnimalTrackerDao dao, view view) {
         this.dao = dao;
         this.view = view;
     }
