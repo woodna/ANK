@@ -5,7 +5,7 @@ Nate Wood
 Animal
 */
 
-public class Animal {
+public class Herd {
 
     
 }
