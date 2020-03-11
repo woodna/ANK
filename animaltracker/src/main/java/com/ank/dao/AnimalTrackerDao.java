@@ -7,7 +7,9 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import com.ank.dto.Herd;
 
@@ -27,19 +29,13 @@ public class AnimalTrackerDao {
         herds = new HashMap<>();
     }
 
-    public void addHerd(String name, int numAnimals, int numHealthy, BigDecimal sellPrice) throws NoSuchHerdException{
-        Herd newHerd = new Herd(name);
-        newHerd.setName(name);
-        newHerd.setPopulation(numAnimals);
-        newHerd.setHealth(numHealthy);
-        LocalDate date = LocalDate.now();
-        newHerd.setRecentUpdate(LocalDate.now());
-        newHerd.setSellPrice(sellPrice);
+    public void addHerd(String name, Herd herd) throws NoSuchHerdException{
+        herd.setRecentUpdate(LocalDate.now());
         
         if (herds.containsKey(name)){
             throw new NoSuchHerdException("A herd by that name is already stored");
         } else {
-            herds.put(name, newHerd);
+            herds.put(name, herd);
         }
     }
 
@@ -47,26 +43,21 @@ public class AnimalTrackerDao {
         return herds.get(name);
     }
 
-    public HashMap<String, Herd> viewAll(){
-        return herds;
+    public List<Herd> viewAll(){
+        return herds.values().stream().collect(Collectors.toList());
     }
 
-    public void editHerd(String name, int numAnimals, int numHealthy, BigDecimal sellPrice) throws NoSuchHerdException {
-        Herd editHerd = new Herd(name);
-        editHerd.setName(name);
-        editHerd.setPopulation(numAnimals);
-        editHerd.setHealth(numHealthy);
+    public void editHerd(String name, Herd editHerd) throws NoSuchHerdException {
         editHerd.setRecentUpdate(LocalDate.now());
-        editHerd.setSellPrice(sellPrice);
 
         if (herds.replace(name, editHerd) == null){
             throw new NoSuchHerdException("That herd was not found and was unable to be edited");
         }
     }
 
-    public void removeHerd(String name){
+    public void removeHerd(String name) throws NoSuchHerdException{
         if (herds.remove(name) == null){
-            throw new NoSuchHerdException("That herd was not found and was unable to be removed")
+            throw new NoSuchHerdException("That herd was not found and was unable to be removed");
         }
     }
 

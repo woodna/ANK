@@ -1,8 +1,12 @@
 package com.ank.controller;
 
-import com.ank.service.ServiceLayer;
-import com.ank.ui.view;
 import java.util.List;
+
+import com.ank.dao.AnimalTrackerDao;
+import com.ank.dao.HerdPersistenceException;
+import com.ank.dao.NoSuchHerdException;
+import com.ank.dto.Herd;
+import com.ank.ui.view;
 
 /* 
 Nate Wood
@@ -10,11 +14,11 @@ Controller
  */
 public class Controller {
 
-    ServiceLayer service;
+    AnimalTrackerDao dao;
     view view;
 
-    public Controller(ServiceLayer service, view view) {
-        this.service = service;
+    public Controller(AnimalTrackerDao dao, view view) {
+        this.dao = dao;
         this.view = view;
         
         
@@ -63,31 +67,31 @@ public class Controller {
     }
     
     private void viewAll() throws HerdPersistenceException{
-        List<Herd> vendingItemList = service.viewAll();
+        List<Herd> vendingItemList = dao.viewAll();
         //view.
     }
     
     private void viewHerd() throws NoSuchHerdException{
         String name = view.getHerdName();
-        Herd herd = service.getHerd(name);
+        Herd herd = dao.viewHerd(name);
         //view.displayHerd(herd);
     }
     
     private void createHerd() throws HerdPersistenceException {
         Herd newHerd = view.getNewHerdInfo();
-        service.addHerd(newHerd.getName(), newHerd);
+        dao.addHerd(newHerd.getName(), newHerd);
     }
     
     private void updateHerd() throws HerdPersistenceException {
         String name = view.getHerdName();
-        Herd currentHerd = service.getHerd(name);
+        Herd currentHerd = dao.viewHerd(name);
         Herd editHerd = view.getEditHerdInfo(currentHerd);
-        service.editHerd(name, editHerd);
+        dao.editHerd(name, editHerd);
     }
     
     private void removeHerd() throws NoSuchHerdException{
         String name = view.getHerdName();
-        service.getHerd(name);
+        dao.viewHerd(name);
     }
     
     private void exitMessage(){
