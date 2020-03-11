@@ -104,5 +104,9 @@ public class view {
     public void displayHerdInfoBanner() {
         io.print("=== Herd Info ===");
     }
+
+    public void print(String string) {
+        io.print(string);
+    }
 }
 
