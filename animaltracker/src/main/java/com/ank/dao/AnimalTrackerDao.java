@@ -46,8 +46,8 @@ public class AnimalTrackerDao {
     public void editHerd(String name, int numAnimals, int numHealthy, BigDecimal sellPrice) throws NoSuchHerdException {
         Herd editHerd = new Herd(name);
         editHerd.setName(name);
-        editHerd.setNumAnimals(numAnimals);
-        editHerd.setHealthy(numHealthy);
+        editHerd.setPopulation(numAnimals);
+        editHerd.setHealth(numHealthy);
         LocalDate date = LocalDate.now();
         editHerd.setDate(LocalDate.now());
         editHerd.sellSetPrice(sellPrice);
