@@ -7,6 +7,8 @@ import com.ank.dao.HerdPersistenceException;
 import com.ank.dao.NoSuchHerdException;
 import com.ank.dto.Herd;
 import com.ank.ui.view;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /* 
 Nate Wood
@@ -80,14 +82,22 @@ public class Controller {
 
     private void createHerd() {
         Herd newHerd = view.getNewHerdInfo();
-        dao.addHerd(newHerd.getName(), newHerd);
+        try {
+            dao.addHerd(newHerd.getName(), newHerd);
+        } catch (NoSuchHerdException e) {
+            view.print(e.getMessage())
+        }
     }
 
     private void updateHerd() {
-        String name = view.getHerdName();
-        Herd currentHerd = dao.viewHerd(name);
-        Herd editHerd = view.getEditHerdInfo(currentHerd);
-        dao.editHerd(name, editHerd);
+        try {
+            String name = view.getHerdName();
+            Herd currentHerd = dao.viewHerd(name);
+            Herd editHerd = view.getEditHerdInfo(currentHerd);
+            dao.editHerd(name, editHerd);
+        } catch (NoSuchHerdException e) {
+            view.print(e.getMessage());
+        }
     }
 
     private void removeHerd() {
