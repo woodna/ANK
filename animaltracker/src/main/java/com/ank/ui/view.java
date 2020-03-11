@@ -31,57 +31,50 @@ public class view {
     }
 
     public Herd getNewHerdInfo() {
+        io.print("=== Create Herd ===");
         String name = io.readString("Please enter the herd name");
         int population = io.readInt("Please enter the number of animals in the herd");
         int health = io.readInt("Please enter the number of healthy animals");
-//        BigDecimal singleSellPrice = new BigDecimal()
+        BigDecimal singleSellPrice = io.bigDecimal("Please enter the sale price of a single animal in the herd");
         Herd currentHerd = new Herd(name);
         currentHerd.setName(name);
         currentHerd.setHealth(health);
         currentHerd.setPopulation(population);
-//        currentHerd.setSellPrice();
+        currentHerd.setSellPrice(singleSellPrice);
         return currentHerd;
     }
-    public void displayAddHerdBanner() {
-        io.print("=== Create Herd ===");
-    }
-
     public void displayAddSuccessBanner() {
         io.readString("Herd successfully created. Please press enter to continue");
     }
 
-//    public void displayHerdList(HashMap<String, Herd> Herd) {
-//        for (Herd currentHerd : ) {
-//            io.print(currentHerd.getName() + ":" +
-//                    currentHerd.getPopulation() + ":" +
-//                    currentHerd.getHealth());
-//        }
-//        io.readString("Please press enter to continue.");
-//    }
-
-    public void displayDisplayAllBanner() {
+    public void displayHerdList(List<Herd> herds) {
         io.print("=== Display All Herds ===");
-    }
-
-    public void displayDisplayHerdBanner() {
-        io.print("=== Display Herd ===");
+        for (Herd currentHerd : herds) {
+            io.print(currentHerd.getName() + ":" +
+                    currentHerd.getPopulation() + ":" +
+                    currentHerd.getSellPrice() + ":" +
+                    currentHerd.getHealth());
+        }
+        io.readString("Please press enter to continue.");
     }
 
     public String getHerdName() {
         return io.readString("Please enter the name of the Herd");
     }
 
-//    public void displayHerd(Herd Herd) {
-//        if (Herd !=null) {
-//            io.print(Herd.getName());
-//            io.print(Herd.getPopulation());
-//            io.print(Herd.getHealth());
-//            io.print("");
-//        } else {
-//            io.print("No such Herd.");
-//        }
-//        io.readString("Please hit enter to continue.");
-//    }
+    public void displayHerd(Herd Herd) {
+        getHerdName();
+        io.print("=== Display Herd ===");
+        if (Herd !=null) {
+            io.print(Herd.getName());
+            io.print(Integer.toString(Herd.getPopulation()));
+            io.print(Integer.toString(Herd.getHealth()));
+            io.print("");
+        } else {
+            io.print("No such Herd.");
+        }
+        io.readString("Please hit enter to continue.");
+    }
 
     public void displayRemoveHerdBanner() {
         io.print("=== Remove Herd ===");
