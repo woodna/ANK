@@ -39,7 +39,10 @@ public class AnimalTrackerDao {
         }
     }
 
-    public Herd viewHerd(String name){
+    public Herd viewHerd(String name) throws NoSuchHerdException {
+        if (herds.get(name) == null) {
+            throw new NoSuchHerdException("A herd with that name was not found");
+        }
         return herds.get(name);
     }
 
