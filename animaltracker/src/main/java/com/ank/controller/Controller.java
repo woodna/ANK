@@ -85,7 +85,7 @@ public class Controller {
         try {
             dao.addHerd(newHerd.getName(), newHerd);
         } catch (NoSuchHerdException e) {
-            view.print(e.getMessage())
+            view.print(e.getMessage());
         }
     }
 
