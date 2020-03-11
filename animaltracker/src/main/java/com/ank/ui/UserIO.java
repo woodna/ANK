@@ -5,6 +5,8 @@
  */
 package com.ank.ui;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Nate Wood
@@ -29,4 +31,6 @@ public interface UserIO {
     long readLong(String prompt, long min, long max);
 
     String readString(String prompt);
+
+    BigDecimal bigDecimal (String prompt);
 }
