@@ -87,6 +87,17 @@ public class view {
     public void displayEditHerdBanner() {
         io.print("=== Edit Herd ===");
     }
+    public Herd getEditHerdInfo() {
+        io.print("=== Edit Herd ===");
+        int population = io.readInt("Please enter the number of animals in the herd");
+        int health = io.readInt("Please enter the number of healthy animals");
+        BigDecimal singleSellPrice = io.bigDecimal("Please enter the sale price of a single animal in the herd");
+        Herd currentHerd = new Herd(name);
+        currentHerd.setHealth(health);
+        currentHerd.setPopulation(population);
+        currentHerd.setSellPrice(singleSellPrice);
+        return currentHerd;
+    }
 
     public void displayEditSuccessBanner() {
         io.readString("Herd information successfully edited Please press enter to continue");
