@@ -6,6 +6,7 @@
 
 package com.ank.ui;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 /**
@@ -101,5 +102,20 @@ public class UserIOConsoleImp1 implements UserIO{
     public String readString(String prompt) {
         System.out.println(prompt);
         return sc.nextLine();
+    }
+
+    @Override
+    public BigDecimal bigDecimal(String prompt) {
+        Scanner sc = new Scanner(System.in);
+        BigDecimal bd = new BigDecimal("0");
+        do {
+            System.out.println(prompt);
+            try {
+                bd = sc.nextBigDecimal();
+            } catch (Exception e) {
+                System.out.println("Invalid Input!");
+            }
+        } while (bd.equals("") || bd.floatValue() <= 0 );
+        return bd;
     }
 }
