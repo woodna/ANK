@@ -63,7 +63,6 @@ public class view {
     }
 
     public void displayHerd(Herd Herd) {
-        getHerdName();
         io.print("=== Display Herd ===");
         if (Herd !=null) {
             io.print(Herd.getName());
@@ -87,7 +86,7 @@ public class view {
     public void displayEditHerdBanner() {
         io.print("=== Edit Herd ===");
     }
-    public Herd getEditHerdInfo() {
+    public Herd getEditHerdInfo(String name) {
         io.print("=== Edit Herd ===");
         int population = io.readInt("Please enter the number of animals in the herd");
         int health = io.readInt("Please enter the number of healthy animals");

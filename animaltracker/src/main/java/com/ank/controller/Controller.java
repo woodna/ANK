@@ -33,19 +33,22 @@ public class Controller {
 
                 switch (menuSelection) {
                     case 1:
-                        viewAll();
+                        createHerd();
+
                         break;
                     case 2:
-                        viewHerd();
+                        removeHerd();
                         break;
                     case 3:
-                        createHerd();
-                        break;
-                    case 4:
                         updateHerd();
                         break;
+                    case 4:
+                        viewAll();
+
+                        break;
                     case 5:
-                        removeHerd();
+                        viewHerd();
+
                         break;
                     case 6:
                         keepGoing = false;
@@ -67,17 +70,18 @@ public class Controller {
 
     private void viewAll() throws HerdPersistenceException {
         List<Herd> herdList = dao.viewAll();
-        //view.
+        view.displayHerdList(herdList);
     }
 
     private void viewHerd() {
         String name = view.getHerdName();
+        Herd herd = null;
         try {
-            Herd herd = dao.viewHerd(name);
+            herd = dao.viewHerd(name);
         } catch (NoSuchHerdException e) {
             view.print(e.getMessage());
         }
-        //view.displayHerd(herd);
+        view.displayHerd(herd);
     }
 
     private void createHerd() {
@@ -92,9 +96,7 @@ public class Controller {
     private void updateHerd() {
         try {
             String name = view.getHerdName();
-            Herd currentHerd = dao.viewHerd(name);
-            Herd editHerd = view.getEditHerdInfo(currentHerd);
-            dao.editHerd(name, editHerd);
+            dao.editHerd(name, view.getEditHerdInfo(name));
         } catch (NoSuchHerdException e) {
             view.print(e.getMessage());
         }
@@ -103,17 +105,18 @@ public class Controller {
     private void removeHerd() {
         String name = view.getHerdName();
         try {
-            dao.viewHerd(name);;
+            dao.viewHerd(name);
+            ;
         } catch (NoSuchHerdException e) {
             view.print(e.getMessage());
         }
     }
 
     private void exitMessage() {
-        //view.displayExitBanner();
+        // view.displayExitBanner();
     }
 
     private void unknownCommad() {
-        //view.displayUnknownCommandBanner();
+        // view.displayUnknownCommandBanner();
     }
 }
