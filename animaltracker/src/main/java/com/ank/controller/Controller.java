@@ -20,7 +20,6 @@ public class Controller {
     public Controller(AnimalTrackerDao dao, view view) {
         this.dao = dao;
         this.view = view;
-
     }
 
     public void run() {
@@ -28,7 +27,7 @@ public class Controller {
         try {
             while (keepGoing) {
 
-                menuSelection = getMenuSelection();
+                int menuSelection = getMenuSelection();
 
                 switch (menuSelection) {
                     case 1:
