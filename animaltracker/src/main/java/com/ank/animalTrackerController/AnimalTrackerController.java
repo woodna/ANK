@@ -7,8 +7,6 @@ import com.ank.dao.HerdPersistenceException;
 import com.ank.dao.NoSuchHerdException;
 import com.ank.dto.Herd;
 import com.ank.ui.view;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /* 
 Nate Wood
@@ -34,7 +32,6 @@ public class AnimalTrackerController {
                 switch (menuSelection) {
                     case 1:
                         createHerd();
-
                         break;
                     case 2:
                         removeHerd();
@@ -44,24 +41,50 @@ public class AnimalTrackerController {
                         break;
                     case 4:
                         viewAll();
-
                         break;
                     case 5:
                         viewHerd();
-
                         break;
                     case 6:
+                        viewHerdPrice();
+                        break;
+                    case 7:
+                        save();
+                        break;
+                    case 8:
+                        load();
+                        break;
+                    case 9:
                         keepGoing = false;
                         break;
                     default:
                         unknownCommad();
                 }
-
             }
             exitMessage();
         } catch (HerdPersistenceException e) {
             view.displayErrorMessage(e.getMessage());
         }
+    }
+
+    private void load() {
+        try {
+            dao.load();
+        } catch(HerdPersistenceException e){
+            view.print(e.getMessage());
+        }
+    }
+
+    private void save() {
+        try {
+            dao.save();
+        } catch(HerdPersistenceException e) {
+            view.print(e.getMessage());
+        }
+    }
+
+    private void viewHerdPrice() {
+        view.displaySellPrice(dao.getSellPrice(view.getHerdName()));
     }
 
     private int getMenuSelection() {
@@ -124,10 +147,10 @@ public class AnimalTrackerController {
     }
 
     private void exitMessage() {
-        // view.displayExitBanner();
+        view.displayExitBanner();
     }
 
     private void unknownCommad() {
-        // view.displayUnknownCommandBanner();
+        view.displayUnknownCommandBanner();
     }
 }

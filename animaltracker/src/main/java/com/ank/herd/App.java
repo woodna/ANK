@@ -1,12 +1,7 @@
 package com.ank.herd;
 
-import java.lang.ModuleLayer.Controller;
-
 import com.ank.animalTrackerController.AnimalTrackerController;
-import com.ank.dao.AnimalTrackerDao;
-import com.ank.ui.UserIO;
-import com.ank.ui.UserIOConsoleImp1;
-import com.ank.ui.view;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

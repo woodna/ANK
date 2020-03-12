@@ -2,7 +2,6 @@ package com.ank.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -74,5 +73,4 @@ public class Herd {
     public void setLocation(int[] location) {
         this.location = location;
     }
-    
 }
