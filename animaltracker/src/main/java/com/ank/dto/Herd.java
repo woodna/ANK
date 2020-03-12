@@ -21,6 +21,7 @@ public class Herd {
     private int health;
     private LocalDate recentUpdate;
     private BigDecimal sellPrice;
+    private int[] location = new int[2];
 
     public Herd(String name){
         this.name = name;
@@ -65,4 +66,13 @@ public class Herd {
     public void setSellPrice(BigDecimal sellPrice) {
         this.sellPrice = sellPrice;
     }
+
+    public int[] getLocation() {
+        return location;
+    }
+
+    public void setLocation(int[] location) {
+        this.location = location;
+    }
+    
 }
