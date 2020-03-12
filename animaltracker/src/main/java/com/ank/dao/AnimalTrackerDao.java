@@ -156,7 +156,7 @@ public class AnimalTrackerDao {
 
         for (Herd h : herds.values()) {
             herdAsText = marshallHealthyHerd(h);
-            out.print(herdAsText);
+            out.println(herdAsText);
             out.flush();
         }
         out.close();
@@ -180,8 +180,11 @@ public class AnimalTrackerDao {
         herdAsText += herd.getPopulation() + SAVE_DELIMITER;
         herdAsText += herd.getHealth() + SAVE_DELIMITER;
         herdAsText += herd.getRecentUpdate() + SAVE_DELIMITER;
-        herdAsText += herd.getSellPrice();
-
+        herdAsText += herd.getSellPrice() + SAVE_DELIMITER;
+        for (boolean health : herd.getAnimal()) {
+            herdAsText += Boolean.toString(health) + SAVE_DELIMITER;
+        }
+        // herdAsText = herdAsText.substring(0, herdAsText.length() - 3);
         return herdAsText;
     }
 
@@ -191,7 +194,7 @@ public class AnimalTrackerDao {
         herdAsText += herd.getPopulation() - herd.getHealth() + SAVE_DELIMITER;
         herdAsText += herd.getRecentUpdate() + SAVE_DELIMITER;
         herdAsText += herd.getSellPrice();
-
+        // herdAsText = herdAsText.substring(0, herdAsText.length() - 3);
         return herdAsText;
     }
 
@@ -223,7 +226,9 @@ public class AnimalTrackerDao {
         newHerd.setHealth(Integer.parseInt(herdTokens[2]));
         newHerd.setRecentUpdate(LocalDate.parse(herdTokens[3]));
         newHerd.setSellPrice(new BigDecimal(herdTokens[4]));
-
+        for (int i = 5; i < herdTokens.length; i++){
+            newHerd.setAnimalStatus(Boolean.parseBoolean(herdTokens[i]));
+        }
         return newHerd;
     }
 }

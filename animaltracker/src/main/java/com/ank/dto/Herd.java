@@ -33,6 +33,7 @@ public class Herd {
 
     public Herd(String name){
         this.name = name;
+        animal = new ArrayList<Boolean>();
     }
     
     public String getName() {
@@ -95,4 +96,8 @@ public class Herd {
             animal.set(r.nextInt(animal.size()), Boolean.FALSE);
         }
     }    
+
+    public void setAnimalStatus(boolean status){
+        animal.add(status);
+    }
 }

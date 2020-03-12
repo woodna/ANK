@@ -30,8 +30,9 @@ public class view {
         io.print("8. Save");
         io.print("9. Load");
         io.print("10. Exit");
+        io.print("11. Set Animal Status");
 
-        return io.readInt("Please select from the " + "above choices.", 1, 10);
+        return io.readInt("Please select from the " + "above choices.", 1, 11);
     }
 
     public Herd getNewHerdInfo() {

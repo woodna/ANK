@@ -63,7 +63,7 @@ public class AnimalTrackerController {
                         save();
                         break;
                     case 9:
-                        moveyHerd();
+                        moveHerd();
                         load();
                         break;
                     case 10:
@@ -72,6 +72,7 @@ public class AnimalTrackerController {
                     case 11:
                         moveHerd();
                         setAnimalStatus();
+                        break;
                     default:
                         unknownCommad();
                 }
