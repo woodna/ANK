@@ -13,17 +13,17 @@ public class App
 {
     public static void main( String[] args )
     {
-        // UserIO io = new UserIOConsoleImp1();
-        // AnimalTrackerDao dao = new AnimalTrackerDao();
-        // view view = new view(io);
-        // AnimalTrackerController controller = new AnimalTrackerController(dao, view);
-        // controller.run();
+//        UserIO io = new UserIOConsoleImp1();
+//        AnimalTrackerDao dao = new AnimalTrackerDao();
+//        view view = new view(io);
+//        AnimalTrackerController controller = new AnimalTrackerController(dao, view);
+//        controller.run();
 
-        ApplicationContext ctx = 
-           new ClassPathXmlApplicationContext("applicationContext.xml");
-        AnimalTrackerController controller = 
-           ctx.getBean("animalTrackerController", AnimalTrackerController.class);
-        controller.run();
+         ApplicationContext ctx = 
+            new ClassPathXmlApplicationContext("applicationContext.xml");
+         AnimalTrackerController controller = 
+            ctx.getBean("animalTrackerController", AnimalTrackerController.class);
+         controller.run();
     }
 }
 

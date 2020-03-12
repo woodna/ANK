@@ -66,13 +66,11 @@ public class Herd {
         this.sellPrice = sellPrice;
     }
 
-
     public int[] getLocation() {
-        return this.location;
+        return location;
     }
 
     public void setLocation(int[] location) {
         this.location = location;
     }
-
 }
