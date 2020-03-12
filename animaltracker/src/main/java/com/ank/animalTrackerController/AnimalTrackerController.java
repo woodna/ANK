@@ -86,10 +86,21 @@ public class AnimalTrackerController {
 
     private void createHerd() {
         Herd newHerd = view.getNewHerdInfo();
-        try {
-            dao.addHerd(newHerd.getName(), newHerd);
-        } catch (NoSuchHerdException e) {
-            view.print(e.getMessage());
+        boolean check = dao.checkLocation(newHerd);
+        if (!check) {
+            try {
+                dao.addHerd(newHerd.getName(), newHerd);
+            } catch (NoSuchHerdException e) {
+                view.print(e.getMessage());
+            }
+        } else {
+            changeLocation(newHerd);
+            view.print(newHerd.getLocation().toString());
+            try {
+                dao.addHerd(newHerd.getName(), newHerd);
+            } catch (NoSuchHerdException e) {
+                view.print(e.getMessage());
+            }
         }
     }
 
