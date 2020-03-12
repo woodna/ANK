@@ -1,5 +1,6 @@
 package com.ank.animalTrackerController;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.ank.dao.AnimalTrackerDao;
@@ -117,8 +118,8 @@ public class AnimalTrackerController {
                 view.print(e.getMessage());
             }
         } else {
-            changeLocation(newHerd);
-            view.print(newHerd.getLocation().toString());
+            dao.changeLocation(newHerd);
+            view.print(Arrays.toString(newHerd.getLocation()));
             try {
                 dao.addHerd(newHerd.getName(), newHerd);
             } catch (NoSuchHerdException e) {
