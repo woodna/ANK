@@ -2,7 +2,6 @@ package com.ank.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +20,7 @@ public class Herd {
     private int health;
     private LocalDate recentUpdate;
     private BigDecimal sellPrice;
+    private int[] location = new int[2];
 
     public Herd(String name){
         this.name = name;
@@ -65,4 +65,14 @@ public class Herd {
     public void setSellPrice(BigDecimal sellPrice) {
         this.sellPrice = sellPrice;
     }
+
+
+    public int[] getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(int[] location) {
+        this.location = location;
+    }
+
 }

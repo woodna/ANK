@@ -27,6 +27,6 @@
     <bean id="animalTrackerController"
       class="com.ank.animalTrackerController.AnimalTrackerController">
         <constructor-arg ref="animalTrackerDao"/>
-        <constructer-arg ref="view"/>
+        <constructor-arg ref="view"/>
     </bean>
 </beans>
