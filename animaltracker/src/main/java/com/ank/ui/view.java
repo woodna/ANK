@@ -1,6 +1,7 @@
 package com.ank.ui;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 /* 
@@ -66,7 +67,7 @@ public class view {
         io.print("=== Display All Herds ===");
         for (Herd currentHerd : herds) {
             io.print("Name: " + currentHerd.getName() + ":" + "Population: " + currentHerd.getPopulation() + ":"
-                    + "Health: " + currentHerd.getHealth() + ":" + "Sell Price: " + currentHerd.getSellPrice()+ ":" + "Location: " + currentHerd.getLocation());
+                    + "Health: " + currentHerd.getHealth() + ":" + "Sell Price: " + currentHerd.getSellPrice()+ ":" + "Location: " + Arrays.toString(currentHerd.getLocation()));
         }
         io.readString("Please press enter to continue.");
     }
@@ -82,7 +83,7 @@ public class view {
             io.print("Population: " + Integer.toString(Herd.getPopulation()));
             io.print("Health: " + Integer.toString(Herd.getHealth()));
             io.print("Sell Price: " + (Herd.getSellPrice()));
-            io.print("Location: " + (Herd.getLocation()));
+            io.print("Location: " + (Arrays.toString(Herd.getLocation())));
         } else {
             io.print("No such Herd.");
         }

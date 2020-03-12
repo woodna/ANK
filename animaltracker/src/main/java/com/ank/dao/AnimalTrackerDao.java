@@ -25,7 +25,8 @@ public class AnimalTrackerDao {
     HashMap<String, Herd> herds;
     private final String HEALTHY_FILE = "HealthyAnimals.txt";
     private final String UNHEALTHY_FILE = "UnhealthyAnimals.txt";
-    private final String DELIMITER = "*$*";
+    private final String SAVE_DELIMITER = "*$*";
+    private final String LOAD_DELIMITER = "\\*\\$\\*";
 
     public AnimalTrackerDao() {
         herds = new HashMap<>();
@@ -112,7 +113,7 @@ public class AnimalTrackerDao {
             } else if (x == 2) {
                 location[0] = location[0] - 1;
                 // raise y
-            } else if (x == 3 && location[1] > 0) {
+            } else if (x == 3 && location[1] < 100) {
                 location[1] = location[1] + 1;
                 // raise y default
             } else if (x == 3) {
@@ -156,20 +157,20 @@ public class AnimalTrackerDao {
     }
 
     public String marshallHealthyHerd(Herd herd) {
-        String herdAsText = herd.getName() + DELIMITER;
-        herdAsText += herd.getPopulation() + DELIMITER;
-        herdAsText += herd.getHealth() + DELIMITER;
-        herdAsText += herd.getRecentUpdate() + DELIMITER;
+        String herdAsText = herd.getName() + SAVE_DELIMITER;
+        herdAsText += herd.getPopulation() + SAVE_DELIMITER;
+        herdAsText += herd.getHealth() + SAVE_DELIMITER;
+        herdAsText += herd.getRecentUpdate() + SAVE_DELIMITER;
         herdAsText += herd.getSellPrice();
 
         return herdAsText;
     }
 
     private String marshallUnhealthyHerd(Herd herd) {
-        String herdAsText = herd.getName() + DELIMITER;
-        herdAsText += herd.getPopulation() + DELIMITER;
-        herdAsText += herd.getPopulation() - herd.getHealth() + DELIMITER;
-        herdAsText += herd.getRecentUpdate() + DELIMITER;
+        String herdAsText = herd.getName() + SAVE_DELIMITER;
+        herdAsText += herd.getPopulation() + SAVE_DELIMITER;
+        herdAsText += herd.getPopulation() - herd.getHealth() + SAVE_DELIMITER;
+        herdAsText += herd.getRecentUpdate() + SAVE_DELIMITER;
         herdAsText += herd.getSellPrice();
 
         return herdAsText;
@@ -196,7 +197,7 @@ public class AnimalTrackerDao {
     }
 
     private Herd unmarshallHealthyHerd(String herdAsText) {
-        String[] herdTokens = herdAsText.split(DELIMITER);
+        String[] herdTokens = herdAsText.split(LOAD_DELIMITER);
 
         Herd newHerd = new Herd(herdTokens[0]);
         newHerd.setPopulation(Integer.parseInt(herdTokens[1]));
