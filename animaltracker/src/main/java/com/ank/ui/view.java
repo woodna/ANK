@@ -47,11 +47,14 @@ public class view {
         int population = io.readInt("Please enter the number of animals in the herd");
         int health = io.readInt("Please enter the number of healthy animals");
         BigDecimal singleSellPrice = io.readPosDecimal("Please enter the sale price of a single animal in the herd");
+        int locationX = io.readInt("Please enter a number");
+        int locationY = io.readInt("Please enter another number");
         Herd currentHerd = new Herd(name);
         currentHerd.setName(name);
         currentHerd.setHealth(health);
         currentHerd.setPopulation(population);
         currentHerd.setSellPrice(singleSellPrice);
+        //currentHerd.setLocation(locationX, locationY);
         return currentHerd;
     }
 
@@ -102,11 +105,14 @@ public class view {
         io.print("=== Edit Herd ===");
         int population = io.readInt("Please enter the number of animals in the herd");
         int health = io.readInt("Please enter the number of healthy animals");
-        BigDecimal singleSellPrice = io.readPosDecimal("Please enter the sale price of a single animal in the herd");
+        BigDecimal singleSellPrice = io.bigDecimal("Please enter the sale price of a single animal in the herd");
+        int locationX = io.readInt("Please enter a number");
+        int locationY = io.readInt("Please enter another number");
         Herd currentHerd = new Herd(name);
         currentHerd.setHealth(health);
         currentHerd.setPopulation(population);
         currentHerd.setSellPrice(singleSellPrice);
+//        currentHerd.setLocation(locationX, locationY);
         return currentHerd;
     }
 
