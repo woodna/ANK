@@ -69,9 +69,10 @@ public class AnimalTrackerController {
                     case 10:
                         keepGoing = false;
                         break;
-                    // case 11:
-                    //     moveHerd();
-                    //     setAnimalStatus();
+                    case 11:
+                        moveHerd();
+                        setAnimalStatus();
+                        break;
                     default:
                         unknownCommad();
                 }
@@ -173,9 +174,9 @@ public class AnimalTrackerController {
         view.displayStatus(status);
     }
 
-    // private void setAnimalStatus() {
-    //     dao.setAnimalStatus(view.getHerdName(), view.getAnimalIndex(), view.getStatus());
-    // }
+    private void setAnimalStatus() {
+        dao.setAnimalStatus(view.getHerdName(), view.getAnimalIndex(), view.getStatus());
+    }
 
 
     private void exitMessage() {

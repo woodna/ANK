@@ -30,8 +30,9 @@ public class view {
         io.print("8. Save");
         io.print("9. Load");
         io.print("10. Exit");
+        io.print("11. Set Animal Status");
 
-        return io.readInt("Please select from the " + "above choices.", 1, 10);
+        return io.readInt("Please select from the " + "above choices.", 1, 11);
     }
 
     public Herd getNewHerdInfo() {
@@ -58,6 +59,7 @@ public class view {
         currentHerd.setAnimal(population, health);
         int[] xy = {locationX, locationY};
         currentHerd.setLocation(xy);
+        currentHerd.setAnimal(population, health);
         return currentHerd;
     }
 
@@ -103,6 +105,7 @@ public class view {
         } else {
             io.print("That animal is unhealthy");
         }
+        io.readString("Press enter to continue");
     }
 
     public boolean getStatus() {
@@ -141,6 +144,7 @@ public class view {
         currentHerd.setSellPrice(singleSellPrice);
         int[] xy = { locationX, locationY };
         currentHerd.setLocation(xy);
+        currentHerd.setAnimal(population, health);
         return currentHerd;
     }
 
