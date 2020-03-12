@@ -50,7 +50,6 @@ public class view {
         int locationX = io.readInt("Please enter a number");
         int locationY = io.readInt("Please enter another number");
         Herd currentHerd = new Herd(name);
-        currentHerd.setName(name);
         currentHerd.setHealth(health);
         currentHerd.setPopulation(population);
         currentHerd.setSellPrice(singleSellPrice);
@@ -67,7 +66,7 @@ public class view {
         io.print("=== Display All Herds ===");
         for (Herd currentHerd : herds) {
             io.print("Name: " + currentHerd.getName() + ":" + "Population: " + currentHerd.getPopulation() + ":"
-                    + "Health: " + currentHerd.getHealth() + ":" + "Sell Price: " + currentHerd.getSellPrice());
+                    + "Health: " + currentHerd.getHealth() + ":" + "Sell Price: " + currentHerd.getSellPrice()+ ":" + "Location: " + currentHerd.getLocation());
         }
         io.readString("Please press enter to continue.");
     }
@@ -83,7 +82,7 @@ public class view {
             io.print("Population: " + Integer.toString(Herd.getPopulation()));
             io.print("Health: " + Integer.toString(Herd.getHealth()));
             io.print("Sell Price: " + (Herd.getSellPrice()));
-            io.print("");
+            io.print("Location: " + (Herd.getLocation()));
         } else {
             io.print("No such Herd.");
         }
