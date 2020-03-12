@@ -20,7 +20,7 @@ public class view {
 
     public int printMenuAndGetSelection() {
         io.print("=== Main Menu ===");
-        io.print("1. Add Her");
+        io.print("1. Add Herd");
         io.print("2. Remove Herd");
         io.print("3. Edit Herd");
         io.print("4. List All Herds");
@@ -35,7 +35,7 @@ public class view {
         String name = io.readString("Please enter the herd name");
         int population = io.readInt("Please enter the number of animals in the herd");
         int health = io.readInt("Please enter the number of healthy animals");
-        BigDecimal singleSellPrice = io.bigDecimal("Please enter the sale price of a single animal in the herd");
+        BigDecimal singleSellPrice = io.readPosDecimal("Please enter the sale price of a single animal in the herd");
         Herd currentHerd = new Herd(name);
         currentHerd.setName(name);
         currentHerd.setHealth(health);
@@ -87,15 +87,18 @@ public class view {
     public void displayEditHerdBanner() {
         io.print("=== Edit Herd ===");
     }
-    public Herd getEditHerdInfo() {
+    public Herd getEditHerdInfo(String name) {
         io.print("=== Edit Herd ===");
         int population = io.readInt("Please enter the number of animals in the herd");
         int health = io.readInt("Please enter the number of healthy animals");
-        BigDecimal singleSellPrice = io.bigDecimal("Please enter the sale price of a single animal in the herd");
+        BigDecimal singleSellPrice = io.readPosDecimal("Please enter the sale price of a single animal in the herd");
+        int locationX = io.readInt("Please enter a number");
+        int locationY = io.readInt("Please enter another number");
         Herd currentHerd = new Herd(name);
         currentHerd.setHealth(health);
         currentHerd.setPopulation(population);
         currentHerd.setSellPrice(singleSellPrice);
+//        currentHerd.setLocation(locationX, locationY);
         return currentHerd;
     }
 
@@ -119,5 +122,7 @@ public class view {
     public void print(String string) {
         io.print(string);
     }
+
+
 }
 
