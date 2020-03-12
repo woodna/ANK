@@ -96,4 +96,8 @@ public class Herd {
         }
     }
     
+    public void setAnimalStatus(boolean status) {
+        animal.add(status);
+    }
+    
 }
