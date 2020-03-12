@@ -75,7 +75,7 @@ public class AnimalTrackerDao {
         return herds.get(name).getPopulation() - herds.get(name).getHealth();
     }
     
-    public boolean getAnimeal(String name, int x){
+    public boolean getAnimal(String name, int x){
         List<Boolean> list = herds.get(name).getAnimal();
         return list.get(x);
     }
@@ -88,6 +88,15 @@ public class AnimalTrackerDao {
         List<Herd> identicalLocations = herds.values().stream().filter(s -> Arrays.equals(s.getLocation(), herd.getLocation()))
                 .collect(Collectors.toList());
         if (identicalLocations.size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkLocationPlusOne(Herd herd) {
+        List<Herd> identicalLocations = herds.values().stream().filter(s -> Arrays.equals(s.getLocation(), herd.getLocation()))
+                .collect(Collectors.toList());
+        if (identicalLocations.size() > 1) {
             return true;
         }
         return false;
@@ -125,7 +134,7 @@ public class AnimalTrackerDao {
                 location[1] = location[1] - 1;
             }
             herd.setLocation(location);
-            overlap = checkLocation(herd);
+            overlap = checkLocationPlusOne(herd);
         }
     }
 

@@ -57,6 +57,7 @@ public class view {
         currentHerd.setSellPrice(singleSellPrice);
         int[] xy = { locationX, locationY };
         currentHerd.setLocation(xy);
+        currentHerd.setAnimal(population, health);
         return currentHerd;
     }
 
@@ -102,6 +103,7 @@ public class view {
         } else {
             io.print("That animal is unhealthy");
         }
+        io.readString("Press enter to continue");
     }
 
     public boolean getStatus() {
@@ -140,6 +142,7 @@ public class view {
         currentHerd.setSellPrice(singleSellPrice);
         int[] xy = { locationX, locationY };
         currentHerd.setLocation(xy);
+        currentHerd.setAnimal(population, health);
         return currentHerd;
     }
 

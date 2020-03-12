@@ -92,8 +92,7 @@ public class Herd {
         animal = new ArrayList<Boolean>(Arrays.asList(new Boolean[population]));
         Collections.fill(animal, Boolean.TRUE);
         for(int i = 0; i < unhealthy; i++){
-            animal.set(r.nextInt(animal.size()), Boolean.TRUE);
+            animal.set(r.nextInt(animal.size()), Boolean.FALSE);
         }
-    }
-    
+    }    
 }
