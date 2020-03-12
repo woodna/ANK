@@ -74,6 +74,11 @@ public class AnimalTrackerDao {
     public int getNumUnhealthy(String name) {
         return herds.get(name).getPopulation() - herds.get(name).getHealth();
     }
+    
+    public boolean getAnimeal(String name, int x){
+        List<Boolean> list = herds.get(name).getAnimal();
+        return list.get(x);
+    }
 
     public BigDecimal getSellPrice(String name) {
         return herds.get(name).getSellPrice().multiply(new BigDecimal(Integer.toString(herds.get(name).getHealth())));
