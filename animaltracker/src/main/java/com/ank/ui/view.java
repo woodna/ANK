@@ -55,7 +55,8 @@ public class view {
         currentHerd.setHealth(health);
         currentHerd.setPopulation(population);
         currentHerd.setSellPrice(singleSellPrice);
-        int[] xy = { locationX, locationY };
+        currentHerd.setAnimal(population, health);
+        int[] xy = {locationX, locationY};
         currentHerd.setLocation(xy);
         currentHerd.setAnimal(population, health);
         return currentHerd;
