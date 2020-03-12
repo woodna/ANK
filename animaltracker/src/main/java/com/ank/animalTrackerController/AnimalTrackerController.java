@@ -119,7 +119,7 @@ public class AnimalTrackerController {
             }
         } else {
             dao.changeLocation(newHerd);
-            view.print(Arrays.toString(newHerd.getLocation()));
+            view.print("Herd already exists there, location changed to: " + Arrays.toString(newHerd.getLocation()));
             try {
                 dao.addHerd(newHerd.getName(), newHerd);
             } catch (NoSuchHerdException e) {

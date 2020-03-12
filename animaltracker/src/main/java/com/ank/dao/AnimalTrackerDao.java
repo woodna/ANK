@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -78,7 +79,7 @@ public class AnimalTrackerDao {
     }
 
     public boolean checkLocation(Herd herd) {
-        List<Herd> identicalLocations = herds.values().stream().filter(s -> s.getLocation() == herd.getLocation())
+        List<Herd> identicalLocations = herds.values().stream().filter(s -> Arrays.equals(s.getLocation(), herd.getLocation()))
                 .collect(Collectors.toList());
         if (identicalLocations.size() > 0) {
             return true;
