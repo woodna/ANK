@@ -1,22 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.ank.ui;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
- *
- * @author Nate Wood
+ * UserIOImp
  */
-public class UserIOConsoleImp1 implements UserIO{
-
+public class UserIOConsoleImp1 implements UserIO {
     Scanner sc = new Scanner(System.in);
-    
+    static private Robot robot;
+    String ERROR = "That was not a valid input, please try again.";
+
     @Override
     public void print(String message) {
         System.out.println(message);
@@ -24,98 +23,219 @@ public class UserIOConsoleImp1 implements UserIO{
 
     @Override
     public double readDouble(String prompt) {
-        System.out.println(prompt);
-        return sc.nextDouble();
+        while (true) {
+            try {
+                System.out.println(prompt);
+                return sc.nextDouble();
+            } catch (Exception e) {
+                System.out.println(ERROR);
+            }
+        }
     }
 
     @Override
     public double readDouble(String prompt, double min, double max) {
         while (true) {
-            System.out.println(prompt);
-            double x = sc.nextDouble();
-            if (x >= min && x <= max) {
-                return x;
+            try {
+                System.out.println(prompt);
+                double x = sc.nextDouble();
+                if (x >= min && x <= max) {
+                    return x;
+                }
+            } catch (Exception e) {
+                System.out.println(ERROR);
+                sc.nextLine();
             }
-            System.out.println("That was not a valid input, try again.");
         }
     }
 
     @Override
     public float readFloat(String prompt) {
-        System.out.println(prompt);
-        return sc.nextFloat();
+        while (true) {
+            try {
+                System.out.println(prompt);
+                return sc.nextFloat();
+            } catch (Exception e) {
+                System.out.println(ERROR);
+                sc.nextLine();
+            }
+        }
     }
 
     @Override
     public float readFloat(String prompt, float min, float max) {
         while (true) {
-            System.out.println(prompt);
-            float x = sc.nextFloat();
-            if (x >= min && x <= max) {
-                return x;
+            try {
+                System.out.println(prompt);
+                float x = sc.nextFloat();
+                if (x >= min && x <= max) {
+                    return x;
+                }
+            } catch (Exception e) {
+                System.out.println(ERROR);
+                sc.nextLine();
             }
-            System.out.println("That was not a valid input, try again.");
         }
     }
 
     @Override
     public int readInt(String prompt) {
-        System.out.println(prompt);
-        int i = sc.nextInt();
-        sc.nextLine();
-        return i;
-        
+        while (true) {
+            try {
+                System.out.print(prompt + " ");
+                int i = sc.nextInt();
+                sc.nextLine();
+                return i;
+            } catch (Exception e) {
+                System.out.println(ERROR);
+                sc.nextLine();
+            }
+        }
     }
 
     @Override
     public int readInt(String prompt, int min, int max) {
         while (true) {
-            System.out.println(prompt);
-            int x = sc.nextInt();
-            if (x >= min && x <= max) {
+            try {
+                System.out.print(prompt + " ");
+                int x = sc.nextInt();
+                if (x >= min && x <= max) {
+                    sc.nextLine();
+                    return x;
+                } else {
+                    System.out.println(x + " was not a valid option, please try again.\n");
+                }
+            } catch (Exception e) {
+                System.out.println(ERROR);
                 sc.nextLine();
-                return x;
             }
-            System.out.println("That was not a valid input, try again.");
         }
     }
 
     @Override
     public long readLong(String prompt) {
-        System.out.println(prompt);
-        return sc.nextLong();
+        while (true) {
+            try {
+                System.out.println(prompt + " ");
+                return sc.nextLong();
+            } catch (Exception e) {
+                System.out.println(ERROR);
+                sc.nextLine();
+            }
+        }
     }
 
     @Override
     public long readLong(String prompt, long min, long max) {
         while (true) {
-            System.out.println(prompt);
-            long x = sc.nextLong();
-            if (x >= min && x <= max) {
-                return x;
+            try {
+                System.out.println(prompt);
+                long x = sc.nextLong();
+                if (x >= min && x <= max) {
+                    return x;
+                }
+            } catch (Exception e) {
+                System.out.println(ERROR);
+                sc.nextLine();
             }
-            System.out.println("That was not a valid input, try again.");
         }
     }
 
     @Override
     public String readString(String prompt) {
         System.out.println(prompt);
+        String input = sc.nextLine();
+        if (input.equals("")) {
+            input = "N/A";
+        }
+        return input;
+    }
+
+    @Override
+    public LocalDate readDate(String prompt) {
+        System.out.println(prompt);
+        LocalDate date;
+
+        while (true) {
+            try {
+                date = LocalDate.parse(sc.nextLine());
+                return date;
+            } catch (Exception e) {
+                System.out.println("That was not a valid date");
+                System.out.println("Please enter a date in the format yyyy-MM-dd");
+            }
+        }
+    }
+
+    @Override
+    public BigDecimal readDecimal(String prompt) {
+        System.out.print(prompt);
+        while (true) {
+            try {
+                BigDecimal b = new BigDecimal(sc.nextLine()).setScale(2, RoundingMode.FLOOR);
+                return b;
+            } catch (Exception e) {
+                System.out.println("That was not a valid money amount, please try again");
+            }
+        }
+    }
+
+    @Override
+    public BigDecimal readPosDecimal(String prompt) {
+        System.out.print(prompt);
+        while (true) {
+            try {
+                BigDecimal b = new BigDecimal(sc.nextLine()).setScale(2, RoundingMode.FLOOR);
+                if (b.compareTo(new BigDecimal("0")) < 0){
+                    throw new Exception();
+                }
+                return b;
+            } catch (Exception e) {
+                System.out.println("That was not a valid money amount, please try again");
+            }
+        }
+    }
+
+    @Override
+    public void insert(String text) {
+        if (robot == null) {
+            try {
+                robot = new Robot();
+                robot.setAutoDelay(5);
+                robot.setAutoWaitForIdle(true);
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+        }
+        char[] chars = text.toCharArray();
+        for (char c : chars) {
+            int code = KeyEvent.getExtendedKeyCodeForChar(c);
+            // robot.keyRelease(16);
+            if (Character.isUpperCase(c)) {
+                robot.keyPress(16);
+                robot.keyPress(code);
+                robot.keyRelease(code);
+                robot.keyRelease(16);
+            } else {
+                robot.keyPress(code);
+                robot.keyRelease(code);
+            }
+        }
+    }
+
+    @Override
+    public String readStringNoSpace() {
         return sc.nextLine();
     }
 
     @Override
-    public BigDecimal bigDecimal(String prompt) {
-        Scanner sc = new Scanner(System.in);
-        BigDecimal bd = new BigDecimal("0");
-        do {
-            System.out.println(prompt);
-            try {
-                bd = sc.nextBigDecimal();
-            } catch (Exception e) {
-                System.out.println("Invalid Input!");
-            }
-        } while (bd.equals("") || bd.floatValue() <= 0 );
-        return bd;
+    public void printNoSpace(String prompt) {
+        System.out.print(prompt);
+    }
+
+    @Override
+    public LocalDate getRobotDate() {
+        LocalDate date = LocalDate.parse(sc.nextLine());
+        return date;
     }
 }

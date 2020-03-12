@@ -1,4 +1,4 @@
-package com.ank.controller;
+package com.ank.animalTrackerController;
 
 import java.util.List;
 
@@ -14,12 +14,12 @@ import java.util.logging.Logger;
 Nate Wood
 Controller
  */
-public class Controller {
+public class AnimalTrackerController {
 
     AnimalTrackerDao dao;
     view view;
 
-    public Controller(AnimalTrackerDao dao, view view) {
+    public AnimalTrackerController(AnimalTrackerDao dao, view view) {
         this.dao = dao;
         this.view = view;
     }
@@ -33,19 +33,22 @@ public class Controller {
 
                 switch (menuSelection) {
                     case 1:
-                        viewAll();
+                        createHerd();
+
                         break;
                     case 2:
-                        viewHerd();
+                        removeHerd();
                         break;
                     case 3:
-                        createHerd();
-                        break;
-                    case 4:
                         updateHerd();
                         break;
+                    case 4:
+                        viewAll();
+
+                        break;
                     case 5:
-                        removeHerd();
+                        viewHerd();
+
                         break;
                     case 6:
                         keepGoing = false;
@@ -67,34 +70,44 @@ public class Controller {
 
     private void viewAll() throws HerdPersistenceException {
         List<Herd> herdList = dao.viewAll();
-        //view.
+        view.displayHerdList(herdList);
     }
 
     private void viewHerd() {
         String name = view.getHerdName();
+        Herd herd = null;
         try {
-            Herd herd = dao.viewHerd(name);
+            herd = dao.viewHerd(name);
         } catch (NoSuchHerdException e) {
             view.print(e.getMessage());
         }
-        //view.displayHerd(herd);
+        view.displayHerd(herd);
     }
 
     private void createHerd() {
         Herd newHerd = view.getNewHerdInfo();
-        try {
-            dao.addHerd(newHerd.getName(), newHerd);
-        } catch (NoSuchHerdException e) {
-            view.print(e.getMessage());
+        boolean check = dao.checkLocation(newHerd);
+        if (!check) {
+            try {
+                dao.addHerd(newHerd.getName(), newHerd);
+            } catch (NoSuchHerdException e) {
+                view.print(e.getMessage());
+            }
+        } else {
+            changeLocation(newHerd);
+            view.print(newHerd.getLocation().toString());
+            try {
+                dao.addHerd(newHerd.getName(), newHerd);
+            } catch (NoSuchHerdException e) {
+                view.print(e.getMessage());
+            }
         }
     }
 
     private void updateHerd() {
         try {
             String name = view.getHerdName();
-            Herd currentHerd = dao.viewHerd(name);
-            Herd editHerd = view.getEditHerdInfo(currentHerd);
-            dao.editHerd(name, editHerd);
+            dao.editHerd(name, view.getEditHerdInfo(name));
         } catch (NoSuchHerdException e) {
             view.print(e.getMessage());
         }
@@ -103,17 +116,18 @@ public class Controller {
     private void removeHerd() {
         String name = view.getHerdName();
         try {
-            dao.viewHerd(name);;
+            dao.viewHerd(name);
+            ;
         } catch (NoSuchHerdException e) {
             view.print(e.getMessage());
         }
     }
 
     private void exitMessage() {
-        //view.displayExitBanner();
+        // view.displayExitBanner();
     }
 
     private void unknownCommad() {
-        //view.displayUnknownCommandBanner();
+        // view.displayUnknownCommandBanner();
     }
 }

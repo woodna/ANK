@@ -32,7 +32,7 @@ public class AnimalTrackerDao {
     public void addHerd(String name, Herd herd) throws NoSuchHerdException{
         herd.setRecentUpdate(LocalDate.now());
         
-        if (herds.containsKey(name)){
+        if (herds.containsKey(herd.getName())){
             throw new NoSuchHerdException("A herd by that name is already stored");
         } else {
             herds.put(name, herd);

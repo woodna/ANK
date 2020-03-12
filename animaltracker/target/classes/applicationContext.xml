@@ -19,13 +19,14 @@
 
     <bean id="animalTrackerDao" class="com.ank.dao.AnimalTrackerDao"/>
 
-    <bean id="view" class="com.ank.ui.view">
+    <bean id="view" 
+        class="com.ank.ui.view">
         <constructor-arg ref="userIO"/>
     </bean>
 
-    <bean id="animalController" class="com.ank.Controller">
-        <constructor-arg ref="animalTrackerDao, view"/>
+    <bean id="animalTrackerController"
+      class="com.ank.animalTrackerController.AnimalTrackerController">
+        <constructor-arg ref="animalTrackerDao"/>
+        <constructer-arg ref="view"/>
     </bean>
 </beans>
-        
-    

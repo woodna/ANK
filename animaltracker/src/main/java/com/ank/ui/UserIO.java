@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ank.ui;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
- *
- * @author Nate Wood
+ * UserIO
  */
 public interface UserIO {
+
     void print(String msg);
 
     double readDouble(String prompt);
@@ -31,6 +27,18 @@ public interface UserIO {
     long readLong(String prompt, long min, long max);
 
     String readString(String prompt);
+    
+    void insert(String text);
+    
+    String readStringNoSpace();
 
-    BigDecimal bigDecimal (String prompt);
+    LocalDate getRobotDate();
+    
+    void printNoSpace(String prompt);
+
+    LocalDate readDate(String prompt);
+
+    BigDecimal readDecimal(String prompt);
+
+    BigDecimal readPosDecimal(String prompt);
 }
