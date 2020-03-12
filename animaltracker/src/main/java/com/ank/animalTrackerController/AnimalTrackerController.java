@@ -32,32 +32,46 @@ public class AnimalTrackerController {
 
                 switch (menuSelection) {
                     case 1:
+                        moveHerd();
                         createHerd();
                         break;
                     case 2:
+                        moveHerd();
                         removeHerd();
                         break;
                     case 3:
+                        moveHerd();
                         updateHerd();
                         break;
                     case 4:
+                        moveHerd();
                         viewAll();
                         break;
                     case 5:
+                        moveHerd();
                         viewHerd();
                         break;
                     case 6:
+                        moveHerd();
                         viewHerdPrice();
                         break;
                     case 7:
+                        moveHerd();
+                        getAnimalStatus();
+                    case 8:
+                        moveHerd();
                         save();
                         break;
-                    case 8:
+                    case 9:
+                        moveHerd();
                         load();
                         break;
-                    case 9:
+                    case 10:
                         keepGoing = false;
                         break;
+                    // case 11:
+                    //     moveHerd();
+                    //     setAnimalStatus();
                     default:
                         unknownCommad();
                 }
@@ -146,6 +160,23 @@ public class AnimalTrackerController {
             view.print(e.getMessage());
         }
     }
+
+    private void moveHerd() {
+        List<Herd> list = dao.viewAll();
+        for (Herd herd : list) {
+            dao.changeLocation(herd);
+        }
+    }
+
+    private void getAnimalStatus() {
+        boolean status = dao.getAnimal(view.getHerdName(), view.getAnimalIndex());
+        view.displayStatus(status);
+    }
+
+    // private void setAnimalStatus() {
+    //     dao.setAnimalStatus(view.getHerdName(), view.getAnimalIndex(), view.getStatus());
+    // }
+
 
     private void exitMessage() {
         view.displayExitBanner();

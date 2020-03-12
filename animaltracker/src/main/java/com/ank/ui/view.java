@@ -26,11 +26,12 @@ public class view {
         io.print("4. List All Herds");
         io.print("5. Search for a Herd by name");
         io.print("6. Get sell price of a herd");
-        io.print("7. Save");
-        io.print("8. Load");
-        io.print("9. Exit");
+        io.print("7. See health of individual animal");
+        io.print("8. Save");
+        io.print("9. Load");
+        io.print("10. Exit");
 
-        return io.readInt("Please select from the " + "above choices.", 1, 9);
+        return io.readInt("Please select from the " + "above choices.", 1, 10);
     }
 
     public Herd getNewHerdInfo() {
@@ -54,7 +55,7 @@ public class view {
         currentHerd.setHealth(health);
         currentHerd.setPopulation(population);
         currentHerd.setSellPrice(singleSellPrice);
-        int[] xy = {locationX, locationY};
+        int[] xy = { locationX, locationY };
         currentHerd.setLocation(xy);
         return currentHerd;
     }
@@ -67,7 +68,8 @@ public class view {
         io.print("=== Display All Herds ===");
         for (Herd currentHerd : herds) {
             io.print("Name: " + currentHerd.getName() + ":" + "Population: " + currentHerd.getPopulation() + ":"
-                    + "Health: " + currentHerd.getHealth() + ":" + "Sell Price: " + currentHerd.getSellPrice()+ ":" + "Location: " + Arrays.toString(currentHerd.getLocation()));
+                    + "Health: " + currentHerd.getHealth() + ":" + "Sell Price: " + currentHerd.getSellPrice() + ":"
+                    + "Location: " + Arrays.toString(currentHerd.getLocation()));
         }
         io.readString("Please press enter to continue.");
     }
@@ -88,6 +90,29 @@ public class view {
             io.print("No such Herd.");
         }
         io.readString("Please hit enter to continue.");
+    }
+
+    public int getAnimalIndex() {
+        return io.readInt("Enter the animal tag you would like. Example: 3");
+    }
+
+    public void displayStatus(boolean healthy) {
+        if (healthy) {
+            io.print("That animal is healthy");
+        } else {
+            io.print("That animal is unhealthy");
+        }
+    }
+
+    public boolean getStatus() {
+        while (true) {
+                String in = io.readString("Is that animal healthy or unhealthy");
+            if (in.equalsIgnoreCase("healthy")){
+                return true; 
+            } else if (in.equalsIgnoreCase("unhealthy")) {
+                    return false;
+            }
+        }
     }
 
     public void displayRemoveHerdBanner() {
@@ -113,7 +138,7 @@ public class view {
         currentHerd.setHealth(health);
         currentHerd.setPopulation(population);
         currentHerd.setSellPrice(singleSellPrice);
-        int[] xy = {locationX, locationY};
+        int[] xy = { locationX, locationY };
         currentHerd.setLocation(xy);
         return currentHerd;
     }
